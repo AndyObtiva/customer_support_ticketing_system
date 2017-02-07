@@ -1,0 +1,186 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+@import "web_fonts";
+@import "bootstrap_custom";
+@import "bootstrap";
+@import "carousel";
+
+// html {
+//   height: 100%;
+// }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: rgba(36, 72, 36, 0.2) !important;
+  background-image: image-url('/Girl-Travel.jpg');
+  // background-size: 2560px 1600px;
+  background-size: auto 1200px;
+  background-repeat: no-repeat;
+  // height: 100%;
+
+  padding-bottom: 0;
+
+}
+.bg-inverse {
+  background-color: transparent !important;
+  background-color: rgba(16,17,17,0.5) !important;
+  // background-color: rgba(36,72,36,0.8) !important;
+  transition: background-color 1000ms;
+
+  &.overlay {
+    // background-color: #292b2c !important;
+    // background-color: rgba(16,17,17,0.5) !important;
+    // background-color: #5cb85c !important;
+    background-color: rgba(36,72,36,0.8) !important;
+  }
+
+}
+
+.turbolinks-progress-bar {
+  height: 5px;
+  background-color: green;
+}
+
+.navbar-inverse {
+  padding-top: 0;
+  padding-bottom: 0;
+  .navbar-brand, .navbar-toggler {
+    font-size: 1.2em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    padding: 14px 8px 18px 8px;
+  }
+  .nav-link {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .navbar-nav .nav-item .nav-link, .navbar-brand, .navbar-toggler {
+    margin-right: 5px;
+    transition: background-color 500ms;
+    // border-radius: 0.55rem;
+    color: white;
+  }
+  .nav-link:focus, .nav-link:hover, .nav-item.active .nav-link, .navbar-brand:hover, .navbar-brand:focus {
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+  }
+}
+.btn-outline-success {
+  color: white;
+  border-color: white;
+}
+
+header {
+  margin-bottom: 25px;
+}
+.marketing.container {
+  // height: 100%;
+  margin-top: 55px;
+}
+footer.container {
+  height: auto;
+  // margin-top: -25px;
+}
+
+.chat_title {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.chat_messages {
+  // height: 70%;
+  // max-height: 70%;
+  // overflow-y: auto;
+}
+
+table {
+  tr {
+    th {
+      padding: 15px 5px;
+      font-size: 1.2em;
+    }
+    td {
+      padding: 5px;
+    }
+  }
+}
+
+.container.marketing {
+  margin-bottom: 35px;
+  background: rgba(240, 240, 233, 0.5);
+  padding: 33px;
+  border-radius: 45px;
+  border: 1px solid black;
+}
+
+.alert-success {
+  background-color: rgba(223,240,216,0.5);
+}
+
+li.dropdown {
+  ul.dropdown-menu {
+    background-color: #5cb85c;
+    padding: 4px 0;
+    min-width: 92px;
+    a {
+      color: white;
+      li {
+        background-color: #5cb85c;
+        transition: background-color 500ms;
+        padding: 0 8px;
+      }
+      &:hover {
+        text-decoration: none;
+        li {
+          background-color: white;
+          color: #5cb85c;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 992px) {
+  .navbar-inverse .navbar-nav .nav-link:focus, .navbar-inverse .navbar-nav .nav-link:hover {
+    border-radius: initial;
+    color: initial;
+    background-color: initial;
+  }
+  li.dropdown ul.dropdown-menu {
+    border: none;
+    background-color: transparent;
+    a {
+      li {
+        background-color: transparent;
+      }
+      &:hover {
+        li {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+// .alert-container {
+//   position: fixed;
+//   top: 100px;
+//   margin-left: auto;
+//   margin-right: auto;
+//   width: 100%;
+//   .alert {
+//     width: 300px;
+//     max-width: 300px;
+//   }
+// }

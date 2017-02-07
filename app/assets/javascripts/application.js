@@ -12,5 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require tether
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+$(document).on("turbolinks:load.application", function() {
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 0) {
+      $('.bg-inverse').addClass("overlay");
+    } else {
+      $('.bg-inverse').removeClass("overlay");
+    }
+  });
+});

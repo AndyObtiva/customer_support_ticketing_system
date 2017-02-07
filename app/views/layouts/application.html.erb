@@ -1,16 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CustomerSupportTicketingSystem</title>
+    <title>Customer Support Ticketing System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.7">
     <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+
+    <!-- Fonts included in web_fonts.scss instead -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:800|Roboto:400,400i,700,700i" rel="stylesheet"> -->
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= flash_alert_bar %>
-    
-    <%= yield %>
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand active" href="/">Customer Support Ticketing System</a>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to 'Tickets', '#tickets', class: 'nav-link' %>
+          </li>
+          <li class="dropdown nav-item">
+            <%= link_to raw("Account #{"(#{current_user.email})" if user_signed_in?} <span class='caret'></span>"), edit_user_registration_path, class: 'nav-link dropdown-toggle', "data-toggle" => "dropdown", role: "button", "aria-haspopup" => "true", "aria-expanded" => "false" %>
+            <ul class="dropdown-menu">
+              <% if user_signed_in? %>
+                <%= link_to raw('<li>Sign Out</li>'), destroy_user_session_path, method: :delete %>
+              <% else %>
+                <%= link_to raw('<li>Sign In</li>'), new_user_session_path %>
+                <%= link_to raw('<li>Sign Up</li>'), new_user_registration_path %>
+              <% end %>
+            </ul>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container marketing">
+      <%= flash_alert_bar %>
+      <%= yield :welcome %>
+      <%= yield %>
+      <%= yield :more %>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="container">
+      <p class="float-right"><a href="#">Back to top</a></p>
+      <p>&copy; 2017 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+
   </body>
 </html>
