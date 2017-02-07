@@ -13,11 +13,14 @@ module ApplicationHelper
   }
 
   def flash_alert_bar
-    FLASH_VARS.map do |flash_type, flash_props|
+    flash_alert_bars = FLASH_VARS.map do |type, props|
+      flash_style = flash[type].blank? ? 'display: none;' : ''
       render('layouts/flash_alert_bar',
-        flash_type: flash_type,
-        flash_props: flash_props
+        flash_type: type,
+        flash_props: props,
+        flash_style: flash_style
       )
-    end.join
+    end
+    raw(flash_alert_bars.join)
   end
 end

@@ -1,3 +1,5 @@
-<p class="flash-<%= flash_type %> alert-dismissible fade alert alert-<%= flash_props[:bootstrap_class] %>" style="<%= 'display: none;' if flash[flash_type].blank? %>">
+<p
+  class="flash-<%= flash_type %> alert-dismissible fade alert alert-<%= flash_props[:bootstrap_class] %>"
+  style="<%= flash_style %>">
   <%= flash[flash_type] %>
 </p>
