@@ -32,11 +32,20 @@ body {
   padding-bottom: 0;
 
 }
-.bg-inverse {
-  background-color: transparent !important;
+
+.turbolinks-progress-bar {
+  height: 5px;
+  background-color: green;
+}
+
+.navbar-inverse.bg-inverse {
+  // background-color: transparent !important;
   background-color: rgba(16,17,17,0.5) !important;
   // background-color: rgba(36,72,36,0.8) !important;
   transition: background-color 1000ms;
+  // padding-top: 0;
+  // padding-bottom: 0;
+  padding: 0;
 
   &.overlay {
     // background-color: #292b2c !important;
@@ -44,22 +53,17 @@ body {
     // background-color: #5cb85c !important;
     background-color: rgba(36,72,36,0.8) !important;
   }
-
-}
-
-.turbolinks-progress-bar {
-  height: 5px;
-  background-color: green;
-}
-
-.navbar-inverse {
-  padding-top: 0;
-  padding-bottom: 0;
-  .navbar-brand, .navbar-toggler {
+  .navbar-brand {
     font-size: 1.2em;
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
-    padding: 14px 8px 18px 8px;
+    padding: 14px 8px 18px 24px;
+    margin-right: 0;
+  }
+  .navbar-toggler {
+    padding: 0px 8px 4px 8px;
+    margin-top: 14px;
+    margin-bottom: 14px;
   }
   .nav-link {
     padding-top: 18px;
@@ -71,7 +75,7 @@ body {
     // border-radius: 0.55rem;
     color: white;
   }
-  .nav-link:focus, .nav-link:hover, .nav-item.active .nav-link, .navbar-brand:hover, .navbar-brand:focus {
+  .nav-link:focus, .nav-link:hover, .nav-item.active .nav-link, .navbar-brand:hover, .navbar-brand:focus, .navbar-toggler:hover {
     border: none;
     background-color: #5cb85c;
     color: white;
@@ -154,8 +158,14 @@ li.dropdown {
 @media (max-width: 992px) {
   .navbar-inverse .navbar-nav .nav-link:focus, .navbar-inverse .navbar-nav .nav-link:hover {
     border-radius: initial;
-    color: initial;
-    background-color: initial;
+    // color: initial;
+    // background-color: initial;
+  }
+  .navbar-inverse.bg-inverse .navbar-nav .nav-item .nav-link, .navbar-inverse.bg-inverse .navbar-brand, .navbar-inverse.bg-inverse .navbar-toggler {
+    margin-right: 0;
+  }
+  .navbar-inverse.bg-inverse .nav-link, .navbar-brand {
+    padding: 6px 6px 6px 24px;
   }
   li.dropdown ul.dropdown-menu {
     border: none;
@@ -163,6 +173,7 @@ li.dropdown {
     a {
       li {
         background-color: transparent;
+        padding: 0px 6px 0px 24px;
       }
       &:hover {
         li {

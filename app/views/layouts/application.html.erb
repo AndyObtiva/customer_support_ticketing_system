@@ -28,6 +28,7 @@
             <%= link_to raw("Account #{"(#{current_user.email})" if user_signed_in?} <span class='caret'></span>"), edit_user_registration_path, class: 'nav-link dropdown-toggle', "data-toggle" => "dropdown", role: "button", "aria-haspopup" => "true", "aria-expanded" => "false" %>
             <ul class="dropdown-menu">
               <% if user_signed_in? %>
+                <%= link_to raw('<li>Settings</li>'), edit_user_registration_path %>
                 <%= link_to raw('<li>Sign Out</li>'), destroy_user_session_path, method: :delete %>
               <% else %>
                 <%= link_to raw('<li>Sign In</li>'), new_user_session_path %>
