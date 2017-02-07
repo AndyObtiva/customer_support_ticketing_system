@@ -13,12 +13,11 @@ module ApplicationHelper
   }
 
   def flash_alert_bar
-    raw(%w(notice alert error).map do |flash_type|
-      <<-MULTI_LINE
-      <p class="flash-#{flash_type} alert-dismissible fade alert alert-#{FLASH_VARS[flash_type.to_sym][:bootstrap_class]}" style="#{'display: none;' if flash[flash_type].blank?}">
-        #{flash[flash_type]}
-      </p>
-      MULTI_LINE
-    end.join)
+    FLASH_VARS.map do |flash_type, flash_props|
+      render('layouts/flash_alert_bar',
+        flash_type: flash_type,
+        flash_props: flash_props
+      )
+    end.join
   end
 end
