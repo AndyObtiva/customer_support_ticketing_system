@@ -24,17 +24,4 @@ module ApplicationHelper
     raw(flash_alert_bars.join)
   end
 
-  def present_page_link_name(name, stub)
-    # <!-- <a class="nav-link" href="#">Home </a> -->
-    if controller_name == 'pages' && params[:id] == stub
-      raw "#{name} <span class='sr-only'>(current)</span>"
-    else
-      name
-    end
-  end
-
-  def page_link(name, stub, options={})
-    raw(link_to present_page_link_name(name, stub), page_path(stub), options)
-  end
-  
 end

@@ -44,6 +44,8 @@ gem 'high_voltage'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'rails-assets-tether', '>= 1.3.3', source: 'https://rails-assets.org/'
 gem 'knockoutjs-rails'
+gem 'easily_typable', '~> 1.0.1'
+gem 'cucumber'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

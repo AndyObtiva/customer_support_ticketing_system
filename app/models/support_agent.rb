@@ -1,0 +1,2 @@
+class SupportAgent < User
+end
