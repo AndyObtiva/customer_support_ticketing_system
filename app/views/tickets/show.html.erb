@@ -25,5 +25,20 @@
   <%= @ticket.support_agent.try(:email) %>
 </p>
 
+<p>
+  <strong>Comments:</strong>
+  <ul class="comments">
+    <% @ticket.comments.each do |comment| %>
+      <li class="comment"><%= comment.created_at %> - <%= comment.user.email %>: <%= comment.body %></li>
+    <% end %>
+  </ul>
+  <%= form_for @ticket.comments.build do |cf| %>
+    <%= cf.hidden_field :ticket_id, value: @ticket.id %>
+    <%= cf.hidden_field :user_id, value: current_user.id %>
+    <%= cf.text_field :body %>
+    <%= cf.submit value: 'Comment' %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <%= link_to 'Back', tickets_path %>

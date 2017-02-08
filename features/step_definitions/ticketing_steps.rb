@@ -82,3 +82,13 @@ Then(/^.+ is presented with support request ticket status and details of "([^"]*
   expect(page.text).to include(ticket.customer.email)
   expect(page.text.downcase).to include(ticket.status)
 end
+
+When(/^.+ submits comment "([^"]*)"$/) do |comment|
+  fill_in "comment_body", :with => comment
+  page.find('.new_comment input[type=submit]').click
+end
+
+Then(/^.+ is presented with comment "([^"]*)"$/) do |comment|
+  expect(page.text).to include(comment)
+  expect(page.find('#comment_body').text).to_not include(comment)
+end

@@ -39,3 +39,13 @@ Scenario: View own support request ticket status and details
   When Customer chooses to list own support request tickets
   And Customer chooses to view support request ticket "Help status 1"
   Then Customer is presented with support request ticket status and details of "Help status 1"
+
+Scenario: Comment on support request ticket as Customer
+  Given Customer is signed in
+  And Customer has following support request tickets:
+  | Support Request  |
+  | Comment Ticket 1 |
+  When Customer chooses to list own support request tickets
+  And Customer chooses to view support request ticket "Comment Ticket 1"
+  When Customer submits comment "Thanks for the help"
+  Then Customer is presented with comment "Thanks for the help"

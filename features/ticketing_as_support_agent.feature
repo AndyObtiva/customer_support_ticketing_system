@@ -30,3 +30,13 @@ Scenario: View open support request ticket status and details
   When Support Agent chooses to list open support request tickets
   And Support Agent chooses to view support request ticket "Status Ticket 2"
   Then Support Agent is presented with support request ticket status and details of "Status Ticket 2"
+
+Scenario: Comment on support request ticket as Support Agent
+  Given Support Agent is signed in
+  And the following support request tickets exist in system:
+  | Support Request  | Customer Email            | Status |
+  | Comment Ticket 1 | customer1@opentickets.com | open   |
+  When Support Agent chooses to list open support request tickets
+  And Support Agent chooses to view support request ticket "Comment Ticket 1"
+  When Support Agent submits comment "Help is on its way"
+  Then Support Agent is presented with comment "Help is on its way"
