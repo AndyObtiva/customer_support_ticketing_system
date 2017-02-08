@@ -22,7 +22,7 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <%= link_to 'Tickets', '#tickets', class: 'nav-link' %>
+            <%= link_to 'Tickets', tickets_path, class: 'nav-link' %>
           </li>
           <li class="dropdown nav-item">
             <%= link_to raw("Account #{"(#{current_user.email})" if user_signed_in?} <span class='caret'></span>"), edit_user_registration_path, class: 'nav-link dropdown-toggle', "data-toggle" => "dropdown", role: "button", "aria-haspopup" => "true", "aria-expanded" => "false" %>

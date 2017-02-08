@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Support request:</strong>
+  <%= @ticket.support_request %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @ticket.status %>
+</p>
+
+<p>
+  <strong>Closed at:</strong>
+  <%= @ticket.closed_at %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @ticket.customer.try(:email) %>
+</p>
+
+<p>
+  <strong>Support agent:</strong>
+  <%= @ticket.support_agent.try(:email) %>
+</p>
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>

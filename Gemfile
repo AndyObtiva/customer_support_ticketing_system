@@ -50,11 +50,18 @@ gem 'cucumber'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'spring-commands-rspec'
+  gem 'spring-commands-cucumber'
   gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
+  gem 'rails-controller-testing'
 end
 
 group :test do
   gem 'cucumber-rails', require: false
+  gem 'launchy'
   gem 'database_cleaner'
 end
 
