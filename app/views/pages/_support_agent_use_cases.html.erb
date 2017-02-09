@@ -1,8 +1,8 @@
-<div class="row">
+<div class="row support_agent_use_cases">
   <div class="col-lg-4">
     <%= image_tag('CustomerSupportTickets', class: 'rounded-circle', alt: 'Customer Support Tickets', xwidth: '140', xheight: '140') %>
     <h2>Customer Tickets</h2>
-    <p>List customer support request tickets in order to review, comment, close, or re-open.</p>
+    <p class="use_case_description">List customer support request tickets in order to review, comment, close, or re-open.</p>
     <p>
       <%= link_to raw("Respond to Customer Tickets &raquo;"), tickets_path, id: 'respond_to_customer_tickets', class: 'btn btn-secondary', role: 'button' %>
     </p>
@@ -10,7 +10,7 @@
   <div class="col-lg-4">
     <%= image_tag('LastOneMonthTicketsReport', class: 'rounded-circle', alt: 'Last One Month Tickets Report', xwidth: '140', xheight: '140') %>
     <h2>Tickets Report</h2>
-    <p>View report of last one month's data of closed customer support request tickets.</p>
+    <p class="use_case_description">View report of last one month's data of closed customer support request tickets.</p>
     <p>
       <%= link_to raw("View Report &raquo;"), report_path('LastOneMonthClosedTicketsReport'), id: 'view_report', class: 'btn btn-secondary', role: 'button' %>
     </p>
@@ -18,7 +18,7 @@
   <div class="col-lg-4">
     <%= image_tag('CustomerProfile', class: 'rounded-circle', alt: 'Customer Profile', xwidth: '140', xheight: '140') %>
     <h2>Support Agent Profile</h2>
-    <p>Update your profile email and password, or cancel your account over here.</p>
+    <p class="use_case_description">Update your profile email and password, or cancel your account over here.</p>
     <p>
       <%= link_to raw("View Support Agent Profile &raquo;"), edit_user_registration_path, id: 'view_customer_profile', class: 'btn btn-secondary', role: 'button' %>
     </p>

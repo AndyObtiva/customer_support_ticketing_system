@@ -23,7 +23,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   background-color: rgba(36, 72, 36, 0.2) !important;
-  background-image: image-url('/Girl-Travel.jpg');
+  // background-image: image-url('/Girl-Travel.jpg');
   // background-size: 2560px 1600px;
   background-size: auto 1200px;
   background-repeat: no-repeat;
@@ -179,6 +179,40 @@ li.dropdown {
         }
       }
     }
+  }
+}
+
+.rounded-circle {
+  margin-bottom: 10px;
+}
+
+.customer_use_cases .use_case_description {
+  min-height: 75px;
+}
+
+.support_agent_use_cases .use_case_description {
+  min-height: 50px;
+}
+
+ul.comments {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    padding: 2px 0;
+    span:nth-child(3) {
+      display: block;
+    }
+  }
+}
+
+.comment {
+  color: inherit;
+  background-color: inherit;
+
+  &.in_progress {
+    color: rgb(100,100,100);
+    background-color: lightyellow;
   }
 }
 

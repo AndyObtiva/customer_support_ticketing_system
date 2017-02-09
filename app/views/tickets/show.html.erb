@@ -17,7 +17,7 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @ticket.customer.try(:email) %>
+  <span class="ticket_customer_email"><%= @ticket.customer.try(:email) %></span>
 </p>
 
 <p>
@@ -27,26 +27,32 @@
 
 <p>
   <strong>Comments:</strong>
-  <ul class="comments">
-    <% @ticket.comments.each do |comment| %>
-      <li class="comment"><%= comment.created_at %> - <%= comment.user.email %>: <%= comment.body %></li>
-    <% end %>
+  <script>window.comments = JSON.parse('<%= raw @ticket.comments.to_json %>')</script>
+  <ul class="comments" data-bind="foreach: comments">
+    <li class="comment" data-bind="css: $data.cssClass">
+      <span class="comment_created_at" data-bind="text: $data.createdAt"></span> - <span class="comment_user_email"  data-bind="text: $data.userEmail"></span>: <span class="comment_body" data-bind="text: $data.body"></span>
+    </li>
   </ul>
   <%= form_for @ticket.comments.build do |cf| %>
     <%= cf.hidden_field :ticket_id, value: @ticket.id %>
     <%= cf.hidden_field :user_id, value: current_user.id %>
-    <%= cf.text_field :body, disabled: @ticket.closed? %>
-    <%= cf.submit value: 'Comment', disabled: @ticket.closed? %>
+    <%= hidden_field_tag :ticket_user_email, current_user.email, "data-bind" => "textInput: newComment.userEmail" %>
+    <%= cf.text_field :body, disabled: @ticket.closed?, "data-bind" => "textInput: newComment.body, focus: focusAction" %>
+    <%= cf.submit value: 'Comment', disabled: @ticket.closed?, "data-bind" => "click: commentAction" %>
   <% end %>
 </p>
 
-<%= form_for @ticket do |f| %>
-  <%= f.hidden_field :status, value: 'closed' %>
-  <%= f.submit 'Close', id: 'close_ticket_action' %>
+<% if @ticket.open? %>
+  <%= form_for @ticket do |f| %>
+    <%= f.hidden_field :status, value: 'closed' %>
+    <%= f.submit 'Close', id: 'close_ticket_action' %>
+  <% end %>
 <% end %>
-<%= form_for @ticket do |f| %>
-  <%= f.hidden_field :status, value: 'open' %>
-  <%= f.submit 'Re-open', id: 'reopen_ticket_action' %>
+<% if @ticket.closed? %>
+  <%= form_for @ticket do |f| %>
+    <%= f.hidden_field :status, value: 'open' %>
+    <%= f.submit 'Re-open', id: 'reopen_ticket_action' %>
+  <% end %>
 <% end %>
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <%= link_to 'Back', tickets_path %>

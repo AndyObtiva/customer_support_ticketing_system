@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require knockout
+//= require knockout.mapping
 //= require tether
 //= require bootstrap-sprockets
 //= require turbolinks
