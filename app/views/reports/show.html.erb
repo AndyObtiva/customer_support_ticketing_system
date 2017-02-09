@@ -1,0 +1,28 @@
+<h1><%= @report.name %></h1>
+<p>Generated At: <%= @report.generated_at %></p>
+<table>
+  <tr>
+    <th>
+      Support Request
+    </th>
+    <th>
+      Customer
+    </th>
+    <th>
+      Status
+    </th>
+  </tr>
+  <% @report.tickets.each do |ticket| %>
+    <tr>
+      <td class='ticket_support_request'>
+        <%= ticket.support_request %>
+      </td>
+      <td class="ticket_customer">
+        <%= ticket.customer.email %>
+      </td>
+      <td class="ticket_status">
+        <%= ticket.status %>
+      </td>
+    </tr>
+  <% end %>
+</table>

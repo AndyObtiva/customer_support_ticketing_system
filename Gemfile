@@ -45,7 +45,7 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'rails-assets-tether', '>= 1.3.3', source: 'https://rails-assets.org/'
 gem 'knockoutjs-rails'
 gem 'easily_typable', '~> 1.0.1'
-gem 'cucumber'
+gem 'abstract_type'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -57,6 +57,8 @@ group :development, :test do
   gem 'guard-cucumber'
   gem 'rb-fsevent' if `uname` =~ /Darwin/
   gem 'rails-controller-testing'
+  gem 'timecop'
+  gem 'simplecov'
 end
 
 group :test do

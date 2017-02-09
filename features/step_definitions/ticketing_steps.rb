@@ -49,10 +49,12 @@ Given(/^the following support request tickets exist in system:$/) do |table|
         password_confirmation: "pass1234"
       )
     status = ticket_attributes['Status']
+    closed_at = ticket_attributes['Closed At']
     Ticket.create!(
       support_request: support_request,
       customer: customer,
-      status: status
+      status: status,
+      closed_at: closed_at
     )
   end
 end
