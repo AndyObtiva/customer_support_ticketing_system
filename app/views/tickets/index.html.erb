@@ -3,9 +3,8 @@
 <h1>Tickets</h1>
 
 <strong>Filter:</strong>
-<%= link_to 'Open', tickets_path(filter: 'open'), id: "filter_by_open_tickets" %> |
-<%= link_to 'Closed', tickets_path(filter: 'closed'), id: "filter_by_closed_tickets" %> |
-<%= link_to 'All', tickets_path(filter: 'all'), id: "filter_by_all_tickets" %>
+<%= ticket_filters %>
+
 <table>
   <thead>
     <tr>

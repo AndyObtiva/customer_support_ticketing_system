@@ -23,6 +23,7 @@ class User < ApplicationRecord
 
   # note: covered by Cucumber test
   def filtered_tickets(filter=nil)
+    filter ||= default_ticket_filter
     query_filter = {}
     case filter
     when 'open'
@@ -32,11 +33,15 @@ class User < ApplicationRecord
     when 'all'
       query_filter = {status: ['open', 'closed']}
     end
-    Ticket.where(default_ticket_query_filter.merge(query_filter))
+    results = Ticket.where(query_filter.merge(additional_ticket_query_filter))
+    [results, filter]
   end
 
   protected
-  def default_ticket_query_filter
+  def additional_ticket_query_filter
     {}
+  end
+  def default_ticket_filter
+    'all'
   end
 end

@@ -1,10 +1,11 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  helper 'tickets'
 
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = current_user.filtered_tickets(params[:filter])
+    @tickets, params[:filter] = current_user.filtered_tickets(params[:filter])
   end
 
   # GET /tickets/1

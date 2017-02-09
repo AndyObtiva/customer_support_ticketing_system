@@ -1,5 +1,5 @@
 class SupportAgent < User
-  def default_ticket_query_filter
-    {status: 'open'}
+  def default_ticket_filter
+    'open'
   end
 end
