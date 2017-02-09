@@ -48,4 +48,9 @@ $(document).on "turbolinks:load.application", =>
       val = this.newComment.body()
       if val == 'New comment'
         this.newComment.body('')
+    $('#comment_body').on 'blur', (e) =>
+      val = this.newComment.body()
+      if val == ''
+        this.newComment.body('New comment')
+        this.comments.pop()
   ko.applyBindings(new CommentsViewModel());
