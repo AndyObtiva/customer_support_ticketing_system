@@ -33,7 +33,16 @@ class User < ApplicationRecord
     when 'all'
       query_filter = {status: ['open', 'closed']}
     end
-    results = Ticket.where(query_filter.merge(additional_ticket_query_filter))
+    query_criteria = query_filter.merge(additional_ticket_query_filter)
+    puts 'Customers'
+    puts Customer.all.inspect
+    puts 'Tickets'
+    puts Ticket.all.inspect
+    puts '>>>query_criteria.inspect'
+    puts query_criteria.inspect
+    results = Ticket.where(query_criteria)
+    puts '>>>results.inspect'
+    puts results.inspect
     [results, filter]
   end
 

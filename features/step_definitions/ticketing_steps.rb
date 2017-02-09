@@ -67,7 +67,7 @@ Then(/^.+ is not presented with the following support request tickets:$/) do |ta
 end
 
 When(/^Support Agent chooses to list open support request tickets$/) do
-  page.find('#respond_to_customer_requests').click
+  page.find('#respond_to_customer_tickets').click
 end
 
 When(/^Support Agent chooses to filter by (.+) support request tickets$/) do |filter|

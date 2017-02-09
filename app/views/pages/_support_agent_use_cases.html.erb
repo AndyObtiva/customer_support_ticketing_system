@@ -2,9 +2,9 @@
   <div class="col-lg-4">
     <%= image_tag('CustomerSupportTickets', class: 'rounded-circle', alt: 'Customer Support Tickets', xwidth: '140', xheight: '140') %>
     <h2>Customer Tickets</h2>
-    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+    <p>List customer support request tickets in order to review, comment, close, or re-open.</p>
     <p>
-      <%= link_to raw("Respond to Customer Requests &raquo;"), tickets_path, id: 'respond_to_customer_requests', class: 'btn btn-secondary', role: 'button' %>
+      <%= link_to raw("Respond to Customer Tickets &raquo;"), tickets_path, id: 'respond_to_customer_tickets', class: 'btn btn-secondary', role: 'button' %>
     </p>
   </div><!-- /.col-lg-4 -->
   <div class="col-lg-4">
@@ -18,7 +18,7 @@
   <div class="col-lg-4">
     <%= image_tag('CustomerProfile', class: 'rounded-circle', alt: 'Customer Profile', xwidth: '140', xheight: '140') %>
     <h2>Support Agent Profile</h2>
-    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+    <p>Update your profile email and password, or cancel your account over here.</p>
     <p>
       <%= link_to raw("View Support Agent Profile &raquo;"), edit_user_registration_path, id: 'view_customer_profile', class: 'btn btn-secondary', role: 'button' %>
     </p>

@@ -8,6 +8,7 @@ class Ticket < ApplicationRecord
   validates :support_request, presence: true
 
   before_save :set_closed_at
+  after_initialize :set_defaults
 
   private
 
@@ -18,6 +19,12 @@ class Ticket < ApplicationRecord
       elsif self.open? && self.closed_at.present?
         self.closed_at = nil
       end
+    end
+  end
+
+  def set_defaults
+    if self.status.blank?
+      self.open!
     end
   end
 end
