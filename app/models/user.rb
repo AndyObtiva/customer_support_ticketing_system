@@ -20,4 +20,23 @@ class User < ApplicationRecord
       in: User::ROLES,
       if: lambda {self.role.present?}
     }
+
+  # note: covered by Cucumber test
+  def filtered_tickets(filter=nil)
+    query_filter = {}
+    case filter
+    when 'open'
+      query_filter = {status: 'open'}
+    when 'closed'
+      query_filter = {status: 'closed'}
+    when 'all'
+      query_filter = {status: ['open', 'closed']}
+    end
+    Ticket.where(default_ticket_query_filter.merge(query_filter))
+  end
+
+  protected
+  def default_ticket_query_filter
+    {}
+  end
 end

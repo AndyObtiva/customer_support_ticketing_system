@@ -2,6 +2,10 @@
 
 <h1>Tickets</h1>
 
+<strong>Filter:</strong>
+<%= link_to 'Open', tickets_path(filter: 'open'), id: "filter_by_open_tickets" %> |
+<%= link_to 'Closed', tickets_path(filter: 'closed'), id: "filter_by_closed_tickets" %> |
+<%= link_to 'All', tickets_path(filter: 'all'), id: "filter_by_all_tickets" %>
 <table>
   <thead>
     <tr>
@@ -15,7 +19,7 @@
   </thead>
 
   <tbody>
-    <% current_user.tickets.each do |ticket| %>
+    <% @tickets.each do |ticket| %>
       <tr class="ticket">
         <td class="ticket_support_request"><%= ticket.support_request %></td>
         <td class="ticket_status"><%= ticket.status %></td>

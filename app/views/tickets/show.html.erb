@@ -35,10 +35,18 @@
   <%= form_for @ticket.comments.build do |cf| %>
     <%= cf.hidden_field :ticket_id, value: @ticket.id %>
     <%= cf.hidden_field :user_id, value: current_user.id %>
-    <%= cf.text_field :body %>
-    <%= cf.submit value: 'Comment' %>
+    <%= cf.text_field :body, disabled: @ticket.closed? %>
+    <%= cf.submit value: 'Comment', disabled: @ticket.closed? %>
   <% end %>
 </p>
 
+<%= form_for @ticket do |f| %>
+  <%= f.hidden_field :status, value: 'closed' %>
+  <%= f.submit 'Close', id: 'close_ticket_action' %>
+<% end %>
+<%= form_for @ticket do |f| %>
+  <%= f.hidden_field :status, value: 'open' %>
+  <%= f.submit 'Re-open', id: 'reopen_ticket_action' %>
+<% end %>
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <%= link_to 'Back', tickets_path %>
