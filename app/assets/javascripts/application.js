@@ -17,6 +17,11 @@
 //= require tether
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require backbone/customer_support_ticketing_system
 //= require_tree .
 
 $(document).on("turbolinks:load.application", function() {
