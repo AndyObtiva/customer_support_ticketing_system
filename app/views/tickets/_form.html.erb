@@ -12,31 +12,35 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :support_request %>
+    <%= f.label :support_request, 'Support Request Details' %><br>
     <%= f.text_area :support_request %>
   </div>
 
-  <div class="field">
-    <%= f.label :status %>
-    <span id="ticket_status"><%= ticket.status %></span>
-  </div>
+  <% if ticket.persisted? %>
 
-  <div class="field">
-    <%= f.label :closed_at %>
-    <%= ticket.closed_at %>
-  </div>
+    <div class="field">
+      <%= f.label :status %><br>
+      <span id="ticket_status"><%= ticket.status %></span>
+    </div>
 
-  <div class="field">
-    <%= f.label :customer %>
-    <%= f.hidden_field :customer_id %>
-    <%= ticket.customer.try(:email) %>
-  </div>
+    <div class="field">
+      <%= f.label :closed_at %><br>
+      <%= ticket.closed_at %>
+    </div>
 
-  <div class="field">
-    <%= f.label :support_agent %>
-    <%= f.hidden_field :support_agent_id %>
-    <%= ticket.support_agent.try(:email) %>
-  </div>
+    <div class="field">
+      <%= f.label :customer %><br>
+      <%= f.hidden_field :customer_id %>
+      <%= ticket.customer.try(:email) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :support_agent %><br>
+      <%= f.hidden_field :support_agent_id %>
+      <%= ticket.support_agent.try(:email) %>
+    </div>
+
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

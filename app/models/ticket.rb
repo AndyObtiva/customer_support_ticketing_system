@@ -5,12 +5,24 @@ class Ticket < ApplicationRecord
   belongs_to :support_agent, optional: true
   has_many :comments
 
-  validates :support_request, presence: true
+  validates :support_request, presence: true, length: {maximum: 512}
 
   before_save :set_closed_at
   after_initialize :set_defaults
+  after_initialize :subscribe_to_comment_events
+
+  # Wisper event listener to Comment Wisper::Publisher (Observer Design Pattern)
+  def comment_created(comment)
+    if support_agent.blank? && comment.user.support_agent?
+      self.update(support_agent: comment.user)
+    end
+  end
 
   private
+
+  def subscribe_to_comment_events
+    Comment.subscribe(self)
+  end
 
   def set_closed_at
     if self.status_changed?

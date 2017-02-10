@@ -1,6 +1,9 @@
 class Comment < ApplicationRecord
+  include Wisper::Publisher
   belongs_to :ticket
   belongs_to :user
+
+  after_commit :publish_created, on: :create
 
   validates :body, presence: true
 
@@ -9,4 +12,9 @@ class Comment < ApplicationRecord
       user_email: user.email
     })
   end
+
+  def publish_created
+    broadcast(:comment_created, self)
+  end
+
 end

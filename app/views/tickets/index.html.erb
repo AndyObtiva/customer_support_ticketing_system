@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-
+<%= link_to '<< Home', root_path %>
 <h1>Tickets</h1>
 
 <strong>Filter:</strong>
@@ -10,11 +9,12 @@
     <% if @tickets.present? %>
     <tr>
       <th>Support request</th>
-      <th>Status</th>
-      <th>Closed at</th>
-      <th>Customer</th>
-      <th>Support agent</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th class="hidden-md-down">Customer</th>
+      <th class="hidden-md-down">Support agent</th>
+      <th class="hidden-md-down">Status</th>
+      <th>Reported at</th>
+      <th class="hidden-lg-down">Closed at</th>
     </tr>
     <% else %>
       <tr>
@@ -26,14 +26,17 @@
   <tbody>
     <% @tickets.each do |ticket| %>
       <tr class="ticket">
-        <td class="ticket_support_request"><%= ticket.support_request %></td>
-        <td class="ticket_status"><%= ticket.status %></td>
-        <td class="ticket_closed_at"><%= ticket.closed_at %></td>
-        <td class="ticket_customer"><%= ticket.customer.try(:email) %></td>
-        <td class="ticket_support_agent"><%= ticket.support_agent.try(:email) %></td>
-        <td><%= link_to 'Show', ticket, class: "show_ticket_action" %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="ticket_support_request">
+          <%= truncate(ticket.support_request, length: 21 , separator: ' ') %>
+        </td>
+        <td>
+          <%= link_to 'View', ticket, class: "show_ticket_action" %>
+        </td>
+        <td class="hidden-md-down ticket_customer"><%= ticket.customer.try(:email) %></td>
+        <td class="hidden-md-down ticket_support_agent"><%= ticket.support_agent.try(:email) %></td>
+        <td class="hidden-md-down ticket_status"><%= ticket.status %></td>
+        <td class="ticket_reported_at"><%= ticket.created_at %></td>
+        <td class="hidden-lg-down ticket_closed_at"><%= ticket.closed_at %></td>
       </tr>
     <% end %>
   </tbody>
@@ -41,8 +44,7 @@
 
 <br>
 
+<%= link_to '<< Home', root_path %> |
 <% if current_user.customer? %>
   <%= link_to 'New Ticket', new_ticket_path %>
 <% end %>
-
-<%= link_to 'Back', :back %>

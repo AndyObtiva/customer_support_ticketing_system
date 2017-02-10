@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<%= link_to '<< Tickets', tickets_path %>
+<h1>Ticket</h1>
 
 <p>
   <strong>Support request:</strong>
@@ -42,17 +43,16 @@
   <% end %>
 </p>
 
+<%= link_to '<< Tickets', tickets_path %> |
 <% if @ticket.open? %>
-  <%= form_for @ticket do |f| %>
+  <%= form_for @ticket, html: {class: 'close_ticket_form'} do |f| %>
     <%= f.hidden_field :status, value: 'closed' %>
     <%= f.submit 'Close', id: 'close_ticket_action' %>
   <% end %>
 <% end %>
 <% if @ticket.closed? %>
-  <%= form_for @ticket do |f| %>
+  <%= form_for @ticket, html: {class: 'reopen_ticket_form'} do |f| %>
     <%= f.hidden_field :status, value: 'open' %>
     <%= f.submit 'Re-open', id: 'reopen_ticket_action' %>
   <% end %>
 <% end %>
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-<%= link_to 'Back', tickets_path %>

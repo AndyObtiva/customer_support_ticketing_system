@@ -37,7 +37,6 @@ gem 'jbuilder', '~> 2.5'
 
 # Back-end add-ons
 gem 'devise'
-gem 'pundit'
 gem 'high_voltage'
 
 # Front-end add-ons
@@ -47,6 +46,7 @@ gem 'knockoutjs-rails'
 gem 'easily_typable', '~> 1.0.1'
 gem 'abstract_type'
 gem 'rails-backbone'
+gem 'wisper', '2.0.0.rc1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
