@@ -1,3 +1,111 @@
 // Place all the styles related to the Comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// .comments, .comment, .comment_user_email, .comment_created_at, .comment_body {
+//   min-width: 262px;
+// }
+.comments {
+  margin-bottom: 35px;
+
+  .comment {
+    position: relative;
+    margin-top: 33px;
+    .comment_user_email, .comment_created_at {
+      font-size: 0.75em;
+      margin-bottom: 8px;
+    }
+    .comment_user_email {
+      font-weight: bold;
+      min-width: 320px;
+      display: block;
+    }
+    .comment_created_at {
+      position: absolute;
+      top: -17px;
+      left: -33px;
+      min-width: 386px;
+      width: 100%;
+    }
+    .comment_body {
+      border: 3px grey solid;
+      border-radius: 15px;
+      padding: 10px;
+      position: relative;
+      margin-top: 0;
+      margin-bottom: 0;
+
+      &:after {
+        content: '^';
+        font-size: 2em;
+        color: grey;
+        position: absolute;
+        top: -26px;
+        padding-bottom: 1px;
+      }
+    }
+    &.initiating_message {
+      .comment_user_email {
+        text-align: left;
+      }
+      .comment_created_at {
+        text-align: center;
+      }
+      .comment_body {
+        text-align: left;
+        // border-top-left-radius: 0;
+        background: rgba(36, 72, 36, 0.8);
+        color: rgb(245,245,245);
+
+        &:after {
+          left: 62px;
+        }
+      }
+    }
+    &.target_message {
+      .comment_user_email {
+        text-align: right;
+      }
+      .comment_created_at {
+        text-align: center;
+      }
+      .comment_body {
+        text-align: right;
+        // border-top-right-radius: 0;
+        background: rgba(190, 219, 236, 0.8);
+
+        &:after {
+          right: 62px;
+        }
+      }
+    }
+  }
+}
+
+.new_comment {
+  text-align: center;
+  input[type=text] {
+    width: 100%;
+    border-radius: 15px;
+    border-style: hidden;
+    border: 3px solid grey;
+    padding: 10px;
+    margin-top: 25px;
+    &:focus {
+      outline-width: 0;
+      border: 3px solid rgba(116, 177, 236, 0.8);
+    }
+  }
+  input[type=submit] {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .comments {
+    padding: 15px;
+  }
+  .container.marketing {
+
+  }
+}

@@ -15,7 +15,7 @@
 @import "bootstrap_custom";
 @import "bootstrap";
 @import "carousel";
-
+@import "comments";
 // html {
 //   height: 100%;
 // }
@@ -137,7 +137,7 @@ li.dropdown {
   ul.dropdown-menu {
     background-color: #5cb85c;
     padding: 4px 0;
-    min-width: 92px;
+    min-width: calc(100% - 4px);
     a {
       color: white;
       li {
@@ -211,8 +211,9 @@ ul.comments {
   background-color: inherit;
 
   &.in_progress {
-    color: rgb(100,100,100);
-    background-color: lightyellow;
+    .comment_body {
+      border-color: darken(yellow, 5%);
+    }
   }
 }
 

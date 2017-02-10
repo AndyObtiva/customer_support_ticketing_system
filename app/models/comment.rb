@@ -9,7 +9,8 @@ class Comment < ApplicationRecord
 
   def as_json(options = nil)
     super(options).merge({
-      user_email: user.email
+      user_email: user.email,
+      user_role: user.role,
     })
   end
 

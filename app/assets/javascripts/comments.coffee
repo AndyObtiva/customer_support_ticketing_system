@@ -5,20 +5,31 @@
 $(document).on "turbolinks:load.application", =>
   CommentsViewModel = =>
     this.comments = window.comments.map (comment, i) =>
+      commentCssClass = 'comment'
+      commentCssClass += if comment.user_role == 'Customer' then ' initiating_message' else ' target_message'
+      email_suffix = if comment.user_role == 'Customer' then ' (Customer)' else ' (Support Agent)'
+      comment_user_email = comment.user_email + email_suffix
       {
         created_at: comment.created_at,
-        user_email: comment.user_email,
-        body: comment.body
+        user_email: comment_user_email,
+        user_role: comment.user_role,
+        body: comment.body,
+        cssClass: commentCssClass
       }
     this.comments = ko.observableArray(this.comments)
     this.newComment = {
       ticket_id: ko.observable($('#comment_ticket_id').val()),
       user_id: ko.observable($('#comment_user_id').val()),
       user_email: ko.observable($('#comment_user_email').val()),
+      user_role: ko.observable($('#comment_user_role').val()),
       created_at: ko.observable(new Date().toString()),
-      body: ko.observable('New comment'),
+      body: ko.observable(''),
       cssClass: 'comment in_progress'
     };
+    email_suffix = if this.newComment.user_role() == 'Customer' then ' (Customer)' else ' (Support Agent)'
+    this.newComment.user_email(this.newComment.user_email() + email_suffix)
+    this.newComment.cssClass += if this.newComment.user_role == 'Customer' then ' initiating_message' else ' target_message'
+
     setInterval((=> this.newComment.created_at(new Date().toString())), 1000)
     this.newComment.body.subscribe (newBody) =>
       if newBody.length > 0 && this.comments.indexOf(this.newComment) == -1
@@ -28,9 +39,10 @@ $(document).on "turbolinks:load.application", =>
         ticket_id: ko.observable(this.newComment.ticket_id()),
         user_id: ko.observable(this.newComment.user_id()),
         user_email: ko.observable(this.newComment.user_email()),
+        user_role: ko.observable(this.newComment.user_role()),
         created_at: ko.observable(this.newComment.created_at()),
         body: ko.observable(this.newComment.body()),
-        cssClass: 'comment'
+        cssClass: ko.observable(this.newComment.cssClass)
       }
       this.comments.pop()
       this.comments.remove(this.newComment)

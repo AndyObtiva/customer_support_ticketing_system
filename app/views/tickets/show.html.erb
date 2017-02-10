@@ -2,11 +2,6 @@
 <h1>Ticket</h1>
 
 <p>
-  <strong>Support request:</strong>
-  <%= @ticket.support_request %>
-</p>
-
-<p>
   <strong>Status:</strong>
   <%= @ticket.status %>
 </p>
@@ -27,18 +22,30 @@
 </p>
 
 <p>
+  <strong>Support request:</strong><br>
+  <%= @ticket.support_request %>
+</p>
+
+<p>
   <strong>Comments:</strong>
-  <script>window.comments = JSON.parse('<%= raw @ticket.comments.to_json %>')</script>
+  <script>
+    var comments_html_safe_json = '<%= @ticket.comments.to_json %>'.replace(/\&quot\;/g, '"');
+    console.log(comments_html_safe_json);
+    window.comments = JSON.parse(comments_html_safe_json)
+  </script>
   <ul class="comments" data-bind="foreach: comments">
     <li class="comment" data-bind="css: $data.cssClass">
-      <span class="comment_created_at" data-bind="text: $data.created_at"></span> - <span class="comment_user_email"  data-bind="text: $data.user_email"></span>: <span class="comment_body" data-bind="text: $data.body"></span>
+      <span class="comment_user_email"  data-bind="text: $data.user_email"></span>
+      <span class="comment_created_at" data-bind="text: $data.created_at"></span>
+      <span class="comment_body" data-bind="text: $data.body"></span>
     </li>
   </ul>
   <%= form_for @ticket.comments.build do |cf| %>
     <%= cf.hidden_field :ticket_id, value: @ticket.id, "data-bind" => "value: newComment.ticket_id" %>
     <%= cf.hidden_field :user_id, value: current_user.id, "data-bind" => "value: newComment.user_id" %>
     <%= hidden_field_tag :comment_user_email, current_user.email, "data-bind" => "value: newComment.user_email" %>
-    <%= cf.text_field :body, disabled: @ticket.closed?, "data-bind" => "textInput: newComment.body, focus: focusAction" %>
+    <%= hidden_field_tag :comment_user_role, current_user.role, "data-bind" => "value: newComment.user_role" %>
+    <%= cf.text_field :body, placeholder: 'Type comment and hit ENTER', disabled: @ticket.closed?, "data-bind" => "textInput: newComment.body, focus: focusAction" %>
     <%= cf.submit value: 'Comment', disabled: @ticket.closed?, "data-bind" => "click: commentAction" %>
   <% end %>
 </p>
