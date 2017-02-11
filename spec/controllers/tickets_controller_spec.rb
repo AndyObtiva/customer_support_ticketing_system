@@ -21,15 +21,21 @@ require 'rails_helper'
 RSpec.describe TicketsController, type: :controller do
   include Devise::Test::ControllerHelpers
 
+  let(:customer) {Customer.create!(email: 'customer@example.com', password: 'pass,1234', password_confirmation: 'pass,1234')}
   # This should return the minimal set of attributes required to create a valid
   # Ticket. As you add validations to Ticket, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      customer_id: customer.id,
+      support_request: 'Help me!'
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      customer_id: customer.id
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -37,7 +43,6 @@ RSpec.describe TicketsController, type: :controller do
   # TicketsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  let(:customer) {Customer.create!(email: 'customer@example.com', password: 'pass,1234', password_confirmation: 'pass,1234')}  
 
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
@@ -64,14 +69,6 @@ RSpec.describe TicketsController, type: :controller do
     it "assigns a new ticket as @ticket" do
       get :new, params: {}, session: valid_session
       expect(assigns(:ticket)).to be_a_new(Ticket)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested ticket as @ticket" do
-      ticket = Ticket.create! valid_attributes
-      get :edit, params: {id: ticket.to_param}, session: valid_session
-      expect(assigns(:ticket)).to eq(ticket)
     end
   end
 
@@ -111,14 +108,14 @@ RSpec.describe TicketsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        valid_attributes.merge(status: 'closed')
       }
 
       it "updates the requested ticket" do
         ticket = Ticket.create! valid_attributes
         put :update, params: {id: ticket.to_param, ticket: new_attributes}, session: valid_session
         ticket.reload
-        skip("Add assertions for updated state")
+        expect(ticket).to be_closed
       end
 
       it "assigns the requested ticket as @ticket" do
@@ -144,23 +141,8 @@ RSpec.describe TicketsController, type: :controller do
       it "re-renders the 'edit' template" do
         ticket = Ticket.create! valid_attributes
         put :update, params: {id: ticket.to_param, ticket: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
+        expect(response).to redirect_to(ticket_path(ticket))
       end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested ticket" do
-      ticket = Ticket.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: ticket.to_param}, session: valid_session
-      }.to change(Ticket, :count).by(-1)
-    end
-
-    it "redirects to the tickets list" do
-      ticket = Ticket.create! valid_attributes
-      delete :destroy, params: {id: ticket.to_param}, session: valid_session
-      expect(response).to redirect_to(tickets_url)
     end
   end
 

@@ -20,10 +20,6 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
   end
 
-  # GET /tickets/1/edit
-  def edit
-  end
-
   # POST /tickets
   # POST /tickets.json
   def create
@@ -51,16 +47,6 @@ class TicketsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @ticket.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /tickets/1
-  # DELETE /tickets/1.json
-  def destroy
-    @ticket.destroy
-    respond_to do |format|
-      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
