@@ -1,0 +1,18 @@
+<div class="row customer_use_cases">
+  <div class="col-lg-4">
+    <%= image_tag('Admin', class: 'rounded-circle', alt: 'Admin', xwidth: '140', xheight: '140') %>
+    <h2>Administration</h2>
+    <p class="use_case_description">Need to administer users, tickets, comments, and all system objects? This is your one stop shop to administration.</p>
+    <p>
+      <%= link_to raw("Enter Admin Dashboard &raquo;"), rails_admin_path, id: 'admin', class: 'btn btn-secondary', role: 'button' %>
+    </p>
+  </div><!-- /.col-lg-4 -->
+  <div class="col-lg-4">
+    <%= image_tag('AdminProfile', class: 'rounded-circle', alt: 'Admin Profile', xwidth: '140', xheight: '140') %>
+    <h2>Administrator Profile</h2>
+    <p class="use_case_description">Update your profile email and password, or cancel your account over here.</p>
+    <p>
+      <%= link_to raw("Admin Profile &raquo;"), edit_user_registration_path, id: 'view_customer_profile', class: 'btn btn-secondary', role: 'button' %>
+    </p>
+  </div><!-- /.col-lg-4 -->
+</div><!-- /.row -->

@@ -7,7 +7,6 @@ class User < ApplicationRecord
   self.inheritance_column = 'role'
 
   has_many :comments
-  has_many :commented_tickets, class_name: 'Ticket', foreign_key: 'ticket_id', through: :comments
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

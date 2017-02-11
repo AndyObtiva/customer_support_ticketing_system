@@ -40,13 +40,14 @@ gem 'devise'
 gem 'high_voltage'
 
 # Front-end add-ons
-gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bootstrap', '~> 4.0.0.alpha6' #safe enough as it is for UI and verified
 gem 'rails-assets-tether', '>= 1.3.3', source: 'https://rails-assets.org/'
 gem 'knockoutjs-rails'
 gem 'easily_typable', '~> 1.0.1'
 gem 'abstract_type'
 gem 'rails-backbone'
-gem 'wisper', '2.0.0.rc1'
+gem 'wisper', '2.0.0.rc1' #safe enough with specs covering behavior
+gem 'rails_admin', '~> 1.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
