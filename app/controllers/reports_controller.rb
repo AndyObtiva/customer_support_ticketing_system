@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "show", layout: 'pdf'
+        render pdf: "show", header: { right: '[page] of [topage]' }
       end
     end
   end
