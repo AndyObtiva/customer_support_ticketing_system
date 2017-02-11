@@ -240,6 +240,15 @@ textarea#ticket_support_request {
   height: 300px;
 }
 
+.new_user {
+  label {
+    font-weight: bold;
+  }
+  input {
+    display: block;
+  }
+}
+
 // .alert-container {
 //   position: fixed;
 //   top: 100px;

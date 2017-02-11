@@ -21,10 +21,7 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="field">
-    <%= f.label :role %><br />
-    <%= f.select :role, user_sign_up_roles, {prompt: true} %>
-  </div>
+  <%= f.hidden_field :role, value: 'Customer' %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
