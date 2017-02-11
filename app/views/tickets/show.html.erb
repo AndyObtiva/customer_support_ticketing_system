@@ -27,11 +27,11 @@
 </p>
 
 <p>
-  <strong>Comments:</strong>
+  <h2>Comments:</h2>
   <script>
-    var comments_html_safe_json = '<%= @ticket.comments.to_json %>'.replace(/\&quot\;/g, '"');
-    console.log(comments_html_safe_json);
-    window.comments = JSON.parse(comments_html_safe_json)
+    var comments_html_safe_json = '<%= @ticket.comments.to_json %>';//.replace(/\&quot\;/g, '"');
+    var comments = $("<div/>").html(comments_html_safe_json).text()
+    window.comments = JSON.parse(comments)
   </script>
   <ul class="comments" data-bind="foreach: comments">
     <li class="comment" data-bind="css: $data.cssClass">

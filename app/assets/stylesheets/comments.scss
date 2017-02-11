@@ -7,6 +7,7 @@
 // }
 .comments {
   margin-bottom: 35px;
+  width: 100%;
 
   .comment {
     position: relative;
@@ -83,9 +84,9 @@
 }
 
 .new_comment {
-  text-align: center;
+  // text-align: center;
   input[type=text] {
-    width: 100%;
+    width: calc(100% - 120px);
     border-radius: 15px;
     border-style: hidden;
     border: 3px solid grey;
@@ -97,7 +98,9 @@
     }
   }
   input[type=submit] {
-    display: none;
+    // display: none;
+    width: 100px;
+    border-radius: 45px;
   }
 }
 

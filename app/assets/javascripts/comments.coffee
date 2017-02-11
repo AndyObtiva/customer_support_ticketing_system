@@ -42,12 +42,10 @@ $(document).on "turbolinks:load.application", =>
         user_role: ko.observable(this.newComment.user_role()),
         created_at: ko.observable(this.newComment.created_at()),
         body: ko.observable(this.newComment.body()),
-        cssClass: ko.observable(this.newComment.cssClass)
+        cssClass: ko.observable(this.newComment.cssClass.replace('in_progress', ''))
       }
       this.comments.pop()
-      this.comments.remove(this.newComment)
       this.comments.push(newCommentObject)
-      this.newComment.body('')
       comment = new CustomerSupportTicketingSystem.Models.Comment(
         ticket_id: newCommentObject.ticket_id(),
         user_id: newCommentObject.user_id(),
@@ -56,13 +54,9 @@ $(document).on "turbolinks:load.application", =>
       )
       comment.save()
       $('#comment_body').focus()
-    $('#comment_body').on 'focus', (e) =>
+      this.newComment.body('')
+    $('#comment_body').on 'keyup', (event) =>
       val = this.newComment.body()
-      if val == 'New comment'
-        this.newComment.body('')
-    $('#comment_body').on 'blur', (e) =>
-      val = this.newComment.body()
-      if val == ''
-        this.newComment.body('New comment')
+      if val == '' && (event.keyCode == 8 || event.keyCode == 46)
         this.comments.pop()
-  ko.applyBindings(new CommentsViewModel());
+  ko.applyBindings(CommentsViewModel());
