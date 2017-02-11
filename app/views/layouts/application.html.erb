@@ -3,6 +3,7 @@
   <head>
     <title>Customer Support Ticketing System</title>
     <meta name="viewport" content="width=device-width, initial-scale=0.7">
+    <meta charset="utf-8" />
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
 
@@ -39,7 +40,7 @@
           <% end %>
           <% if current_user.try(:admin?) %>
             <li class="nav-item">
-              <%= link_to raw("Administration &raquo;"), rails_admin_path, id: 'admin', class: 'btn btn-secondary', role: 'button' %>
+              <%= link_to raw("Administration"), rails_admin_path, id: 'admin', class: 'nav-link' %>
             </li>
           <% end %>
           <li class="dropdown nav-item">

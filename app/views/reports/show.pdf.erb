@@ -1,11 +1,8 @@
-<%= link_to '<< Home', root_path %> |
-<%= link_to 'Download PDF', report_path(params[:id], format: 'pdf') %> |
-<a href="javascript:if(window.print)window.print()">Print</a>
 <div class="report last_one_month_closed_tickets">
   <h1><%= @report.name %></h1>
   <p>Generated At: <%= @report.generated_at %></p>
   <table class="report_table">
-    <thead>
+    <tbody>
       <tr>
         <th>
           Support Request
@@ -23,8 +20,6 @@
           Closed
         </th>
       </tr>
-    </thead>
-    <tbody>
       <% @report.tickets.each do |ticket| %>
       <tr>
         <td class='ticket_support_request'>
@@ -47,4 +42,3 @@
     </tbody>
   </table>
 </div>
-<%= link_to '<< Home', root_path %>

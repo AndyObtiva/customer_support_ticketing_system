@@ -7,6 +7,7 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @tickets, params[:filter] = current_user.filtered_tickets(params[:filter])
+    @tickets = @tickets.order(created_at: :desc)
   end
 
   # GET /tickets/1

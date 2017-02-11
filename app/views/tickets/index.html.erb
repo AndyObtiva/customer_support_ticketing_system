@@ -44,7 +44,7 @@
 
 <br>
 
-<%= link_to '<< Home', root_path %> |
+<%= link_to '<< Home', root_path %>
 <% if current_user.customer? %>
-  <%= link_to 'New Ticket', new_ticket_path %>
+  | <%= link_to 'New Ticket', new_ticket_path %>
 <% end %>

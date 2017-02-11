@@ -1,3 +1,53 @@
 // Place all the styles related to the Reports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.report.last_one_month_closed_tickets {
+  // background-color: white;
+  // border: 1px solid black;
+  padding: 15px;
+
+  table.report_table {
+    tr {
+      td {
+        border-top: 1px solid black;
+      }
+    }
+  }
+}
+
+@media print {
+  html {
+    height: 100%;
+    background: white;
+    body {
+      height: 100%;
+      background: white;
+      padding: 0;
+      margin: 0;
+      .navbar-inverse.bg-inverse, footer {
+        display: none !important;
+        z-index: -1 !important;
+      }
+      .container.marketing {
+        height: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        > :not(.report) {
+          display: none !important;
+        }
+        .report {
+          width: 100%;
+          height: 100%;
+          border: none;
+          position: absolute;
+          z-index: 10000;
+          top: 0;
+          left: 0;
+          tr { page-break-inside: avoid; }
+        }
+      }
+    }
+  }
+}

@@ -7,7 +7,14 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [
-      :email, :password, :password_confirmation, :role 
+      :email, :password, :password_confirmation, :role
     ])
+  end
+
+  def ensure_support_agent!
+    if !current_user.try(:support_agent?)
+      flash[:alert] = 'Only support agents are allowed to access that page!'
+      redirect_to root_path
+    end
   end
 end

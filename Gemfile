@@ -49,6 +49,9 @@ gem 'rails-backbone'
 gem 'wisper', '2.0.0.rc1' #safe enough with specs covering behavior
 gem 'rails_admin', '~> 1.1.1'
 
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
