@@ -33,7 +33,16 @@
     var comments = $("<div/>").html(comments_html_safe_json).text()
     window.comments = JSON.parse(comments)
   </script>
-  <ul class="comments" data-bind="foreach: comments">
+  <ul class="comments comments-non-js">
+    <% @ticket.comments.each do |comment| %>
+      <li class="comment <%= current_user.customer? ? 'initiating_message' : 'target_message' %>">
+        <span class="comment_user_email"><%= comment.user.email %></span>
+        <span class="comment_created_at"><%= comment.created_at %></span>
+        <span class="comment_body"><%= comment.body %></span>
+      </li>
+    <% end %>
+  </ul>
+  <ul class="comments comments-js" style="display: none" data-bind="foreach: comments">
     <li class="comment" data-bind="css: $data.cssClass">
       <span class="comment_user_email"  data-bind="text: $data.user_email"></span>
       <span class="comment_created_at" data-bind="text: $data.created_at"></span>
@@ -45,7 +54,7 @@
     <%= cf.hidden_field :user_id, value: current_user.id, "data-bind" => "value: newComment.user_id" %>
     <%= hidden_field_tag :comment_user_email, current_user.email, "data-bind" => "value: newComment.user_email" %>
     <%= hidden_field_tag :comment_user_role, current_user.role, "data-bind" => "value: newComment.user_role" %>
-    <%= cf.text_field :body, placeholder: 'Type comment and hit ENTER', disabled: @ticket.closed?, "data-bind" => "textInput: newComment.body, focus: focusAction" %>
+    <%= cf.text_field :body, placeholder: @ticket.closed? ? 'Ticket closed.' : 'Type comment and hit ENTER', disabled: @ticket.closed?, "data-bind" => "textInput: newComment.body, focus: focusAction" %>
     <%= cf.submit value: 'Comment', disabled: @ticket.closed?, "data-bind" => "click: commentAction" %>
   <% end %>
 </p>

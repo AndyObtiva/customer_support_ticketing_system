@@ -4,22 +4,22 @@ RSpec.describe Ticket, type: :model do
   let(:customer) do
     Customer.create!(
       email: 'customer@example.com',
-      password: 'pass1234',
-      password_confirmation: 'pass1234'
+      password: 'pass,1234',
+      password_confirmation: 'pass,1234'
     )
   end
   let(:support_agent) do
     SupportAgent.create!(
       email: 'support_agent@example.com',
-      password: 'pass1234',
-      password_confirmation: 'pass1234'
+      password: 'pass,1234',
+      password_confirmation: 'pass,1234'
     )
   end
   let(:support_agent2) do
     SupportAgent.create!(
       email: 'support_agent2@example.com',
-      password: 'pass1234',
-      password_confirmation: 'pass1234'
+      password: 'pass,1234',
+      password_confirmation: 'pass,1234'
     )
   end
   subject do

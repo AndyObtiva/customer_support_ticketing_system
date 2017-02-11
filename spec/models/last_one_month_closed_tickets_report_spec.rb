@@ -6,8 +6,8 @@ RSpec.describe LastOneMonthClosedTicketsReport, type: :model do
     let(:customer) {
       Customer.create!(
         email: 'customer@example.com',
-        password: 'pass1234',
-        password_confirmation: 'pass1234'
+        password: 'pass,1234',
+        password_confirmation: 'pass,1234'
       )
     }
     before do

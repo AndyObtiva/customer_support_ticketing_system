@@ -45,8 +45,8 @@ Given(/^the following support request tickets exist in system:$/) do |table|
     customer = Customer.find_by(email: ticket_attributes['Customer Email']) ||
       Customer.create!(
         email: "other_customer#{i}@example.com",
-        password: "pass1234",
-        password_confirmation: "pass1234"
+        password: "pass,1234",
+        password_confirmation: "pass,1234"
       )
     status = ticket_attributes['Status']
     closed_at = ticket_attributes['Closed At']

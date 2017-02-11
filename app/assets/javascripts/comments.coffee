@@ -28,7 +28,7 @@ $(document).on "turbolinks:load.application", =>
     };
     email_suffix = if this.newComment.user_role() == 'Customer' then ' (Customer)' else ' (Support Agent)'
     this.newComment.user_email(this.newComment.user_email() + email_suffix)
-    this.newComment.cssClass += if this.newComment.user_role == 'Customer' then ' initiating_message' else ' target_message'
+    this.newComment.cssClass += if this.newComment.user_role() == 'Customer' then ' initiating_message' else ' target_message'
 
     setInterval((=> this.newComment.created_at(new Date().toString())), 1000)
     this.newComment.body.subscribe (newBody) =>
@@ -60,3 +60,5 @@ $(document).on "turbolinks:load.application", =>
       if val == '' && (event.keyCode == 8 || event.keyCode == 46)
         this.comments.pop()
   ko.applyBindings(CommentsViewModel());
+  $('.comments-non-js').hide(0);
+  $('.comments-js').show(0);

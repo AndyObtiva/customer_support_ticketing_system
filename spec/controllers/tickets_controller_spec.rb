@@ -19,6 +19,7 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe TicketsController, type: :controller do
+  include Devise::Test::ControllerHelpers
 
   # This should return the minimal set of attributes required to create a valid
   # Ticket. As you add validations to Ticket, be sure to
@@ -35,6 +36,13 @@ RSpec.describe TicketsController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # TicketsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  let(:customer) {Customer.create!(email: 'customer@example.com', password: 'pass,1234', password_confirmation: 'pass,1234')}  
+
+  before do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in customer
+  end
 
   describe "GET #index" do
     it "assigns all tickets as @tickets" do

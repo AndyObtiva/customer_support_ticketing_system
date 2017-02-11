@@ -20,6 +20,9 @@ class User < ApplicationRecord
       if: lambda {self.role.present?}
     }
 
+  validates :password, length: {minimum: 8}
+  validate :password_format
+
   # note: covered by Cucumber test
   def filtered_tickets(filter=nil)
     filter ||= default_ticket_filter
@@ -43,5 +46,17 @@ class User < ApplicationRecord
   end
   def default_ticket_filter
     'all'
+  end
+
+  private
+
+  def password_format
+    return unless self.password.present?
+    unless self.password.match(/\d/)
+      self.errors[:password] << 'must include at least one number to be more secure (i.e. 0-9)'
+    end
+    unless self.password.match(/[\,:!@#%^&*_\-+=.;"']/)
+      self.errors[:password] << 'must include at least one symbol to be more secure (i.e. ,:!@#%^&*"_-+=.\';)'
+    end
   end
 end
